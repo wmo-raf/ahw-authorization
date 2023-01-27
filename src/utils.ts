@@ -1,10 +1,10 @@
-import { Context, Next } from "koa";
-import logger from "logger";
-import Settings from "services/settings.service";
-import { IUser } from "services/keycloak.interfaces";
-import { URL } from "url";
+import { Context, Next } from 'koa';
+import logger from 'logger';
+import Settings from 'services/settings.service';
+import { IUser } from 'services/keycloak.interfaces';
+import { URL } from 'url';
 
-const TRUTHY_VALUES: [string] = "y yes true".split(/\s/);
+const TRUTHY_VALUES: string[] = 'y yes true'.split(/\s/);
 
 export default class Utils {
   static getUser(ctx: Context): IUser {
@@ -13,61 +13,61 @@ export default class Utils {
   }
 
   static async isLogged(ctx: Context, next: Next): Promise<void> {
-    logger.debug("Checking if user is logged");
+    logger.debug('Checking if user is logged');
     if (Utils.getUser(ctx)) {
       await next();
     } else {
-      logger.debug("Not logged");
-      ctx.throw(401, "Not authenticated");
+      logger.debug('Not logged');
+      ctx.throw(401, 'Not authenticated');
     }
   }
 
   static async isAdmin(ctx: Context, next: Next): Promise<void> {
-    logger.info("Checking if user is admin");
+    logger.info('Checking if user is admin');
     const user: IUser = Utils.getUser(ctx);
     if (!user) {
-      logger.info("Not authenticated");
-      ctx.throw(401, "Not authenticated");
+      logger.info('Not authenticated');
+      ctx.throw(401, 'Not authenticated');
       return;
     }
-    if (user.role === "ADMIN") {
-      logger.info("User is admin");
+    if (user.role === 'ADMIN') {
+      logger.info('User is admin');
       await next();
     } else {
-      logger.info("Not admin");
-      ctx.throw(403, "Not authorized");
+      logger.info('Not admin');
+      ctx.throw(403, 'Not authorized');
     }
   }
 
   static async isAdminOrManager(ctx: Context, next: Next): Promise<void> {
-    logger.info("Checking if user is admin or manager");
+    logger.info('Checking if user is admin or manager');
     const user: IUser = Utils.getUser(ctx);
     if (!user) {
-      logger.info("Not authenticated");
-      ctx.throw(401, "Not authenticated");
+      logger.info('Not authenticated');
+      ctx.throw(401, 'Not authenticated');
       return;
     }
-    if (user.role === "ADMIN" || user.role === "MANAGER") {
+    if (user.role === 'ADMIN' || user.role === 'MANAGER') {
       await next();
     } else {
-      logger.info("Not admin");
-      ctx.throw(403, "Not authorized");
+      logger.info('Not admin');
+      ctx.throw(403, 'Not authorized');
     }
   }
 
   static async isMicroservice(ctx: Context, next: Next): Promise<void> {
-    logger.info("Checking if user is a microservice");
+    logger.info('Checking if user is a microservice');
     const user: IUser = Utils.getUser(ctx);
     if (!user) {
-      logger.info("Not authenticated");
-      ctx.throw(401, "Not authenticated");
+      logger.info('Not authenticated');
+      ctx.throw(401, 'Not authenticated');
       return;
     }
-    if (user.sub === "microservice") {
+    if (user.sub === 'microservice') {
       await next();
     } else {
-      logger.info("Not admin");
-      ctx.throw(403, "Not authorized");
+      logger.info('Not admin');
+      ctx.throw(403, 'Not authorized');
     }
   }
 
@@ -89,15 +89,15 @@ export default class Utils {
         a.push(`${k}=${encodeURIComponent(obj[k])}`);
         return a;
       }, [])
-      .join("&");
+      .join('&');
   }
 
   static getHostForPaginationLink(ctx: Context): string {
-    if ("x-rw-domain" in ctx.request.header) {
-      return ctx.request.header["x-rw-domain"] as string;
+    if ('x-rw-domain' in ctx.request.header) {
+      return ctx.request.header['x-rw-domain'] as string;
     }
 
-    if ("referer" in ctx.request.header) {
+    if ('referer' in ctx.request.header) {
       const url: URL = new URL(ctx.request.header.referer);
       return url.host;
     }
@@ -106,10 +106,10 @@ export default class Utils {
 
   static getToken(ctx: Context): string {
     if (!ctx.headers || !ctx.headers.authorization) {
-      return "";
+      return '';
     }
 
-    const parts: string[] = ctx.headers.authorization.split(" ");
+    const parts: string[] = ctx.headers.authorization.split(' ');
 
     if (parts.length === 2) {
       const scheme: string = parts[0];
@@ -120,7 +120,7 @@ export default class Utils {
       }
     }
 
-    return "";
+    return '';
   }
 
   static toBool(value: any): boolean {
