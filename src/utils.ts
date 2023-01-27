@@ -4,6 +4,8 @@ import Settings from "services/settings.service";
 import { IUser } from "services/keycloak.interfaces";
 import { URL } from "url";
 
+const TRUTHY_VALUES: [string] = "y yes true".split(/\s/);
+
 export default class Utils {
   static getUser(ctx: Context): IUser {
     // @ts-ignore
@@ -119,5 +121,24 @@ export default class Utils {
     }
 
     return "";
+  }
+
+  static toBool(value: any): boolean {
+    value = value.toString();
+    value = value.trim();
+    value = value.toLowerCase();
+
+    // Empty string is considered a falsy value
+    if (!value.length) {
+      return false;
+
+      // Any number above zero is considered a truthy value
+    } else if (!isNaN(Number(value))) {
+      return value > 0;
+
+      // Any value not marked as a truthy value is automatically falsy
+    } else {
+      return TRUTHY_VALUES.indexOf(value) >= 0;
+    }
   }
 }

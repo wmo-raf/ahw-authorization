@@ -8,7 +8,8 @@
     "authServerUrl": "KC_AUTH_URL",
     "resource": "KC_CLIENT_ID",
     "secret": "KC_CLIENT_SECRET",
-    "usersGroup": "KC_USERS_GROUP"
+    "usersGroup": "KC_USERS_GROUP",
+    "emailSendingEnabled": "KC_EMAIL_SENDING_ENABLED"
   },
   "keycloakCredentials": {
     "username": "KC_AUTH_USERNAME",

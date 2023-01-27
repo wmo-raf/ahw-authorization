@@ -8,8 +8,11 @@ import { JWTPayload } from "services/keycloak.interfaces";
 import KeyCloakAdminService from "services/keycloak.admin.service";
 import KeyCloakApiService from "./keycloak.api.service";
 import { KeycloakConfig } from "./keycloak.interfaces";
+import Utils from "utils";
 
 const keycloakConfig: KeycloakConfig = config.get("keycloak");
+
+const emailSendingEnabled: boolean = Utils.toBool(keycloakConfig.emailSendingEnabled);
 
 const kConfig = {
   realm: keycloakConfig.realm,
@@ -42,7 +45,9 @@ export default class KeyCloakService {
       email,
     });
 
-    await KeyCloakAdminService.sendVerificationEmail({ userId: user.id });
+    if (emailSendingEnabled) {
+      await KeyCloakAdminService.sendVerificationEmail({ userId: user.id });
+    }
 
     return user;
   }

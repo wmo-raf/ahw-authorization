@@ -6,7 +6,8 @@
     "resource": null,
     "publicClient": true,
     "confidentialPort": 0,
-    "secret": null
+    "secret": null,
+    "enableEmailSending": true
   },
   "keycloakCredentials": {
     "username": null,

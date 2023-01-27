@@ -32,10 +32,11 @@ export interface KeycloakConfig {
   authServerUrl: string;
   sslRequired: string;
   resource: string;
-  publicClient: true;
+  publicClient: boolean;
   confidentialPort: number;
   secret: string;
   usersGroup?: string;
+  emailSendingEnabled: boolean;
 }
 
 export interface KeycloakCredentials {
