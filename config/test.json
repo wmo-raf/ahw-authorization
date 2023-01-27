@@ -1,0 +1,10 @@
+{
+  "server": {
+    "internalUrl": "http://authorization.com",
+    "publicUrl": "http://authorization.com"
+  },
+  "settings": {
+    "defaultApp": "eahw",
+    "thirdParty": {}
+  }
+}

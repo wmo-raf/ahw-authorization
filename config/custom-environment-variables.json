@@ -1,0 +1,39 @@
+{
+  "redis": {
+    "url": "REDIS_URL",
+    "defaultTTL": "REDIS_DEFAULT_TTL"
+  },
+  "keycloak": {
+    "realm": "KC_REALM",
+    "authServerUrl": "KC_AUTH_URL",
+    "resource": "KC_CLIENT_ID",
+    "secret": "KC_CLIENT_SECRET",
+    "usersGroup": "KC_USERS_GROUP"
+  },
+  "keycloakCredentials": {
+    "username": "KC_AUTH_USERNAME",
+    "password": "KC_AUTH_PASSWORD"
+  },
+  "logger": {
+    "type": "LOGGER_TYPE",
+    "level": "LOGGER_LEVEL"
+  },
+  "server": {
+    "internalUrl": "INTERNAL_URL",
+    "publicUrl": "PUBLIC_URL",
+    "sessionKey": "SESSION_KEY",
+    "port": "PORT"
+  },
+  "application": {
+    "name": "APP_NAME",
+    "logo": "APP_LOGO",
+    "principalColor": "APP_COLOR"
+  },
+  "jwt": {
+    "token": "JWT_SECRET",
+    "publicKey": "KC_REALM_PUBLIC_KEY"
+  },
+  "settings": {
+    "thirdParty": {}
+  }
+}

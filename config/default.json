@@ -1,0 +1,49 @@
+{
+  "keycloak": {
+    "realm": null,
+    "authServerUrl": "http://localhost:8080/auth/",
+    "sslRequired": "external",
+    "resource": null,
+    "publicClient": true,
+    "confidentialPort": 0,
+    "secret": null
+  },
+  "keycloakCredentials": {
+    "username": null,
+    "password": null
+  },
+  "redis": {
+    "url": "redis://localhost:6379",
+    "defaultTTL": 86400
+  },
+  "logger": {
+    "name": "Authorization",
+    "level": "info",
+    "type": "console",
+    "toFile": false
+  },
+  "server": {
+    "port": 9000,
+    "publicUrl": "http://authorization.dev:9000",
+    "internalUrl": "http://localhost:9000",
+    "cookie": {
+      "domain": "authorization.dev"
+    },
+    "sessionKey": "authorization-key"
+  },
+  "service": {
+    "name": "Authorization"
+  },
+  "application": {
+    "name": "EAHW",
+    "logo": "",
+    "principalColor": "#f1b319"
+  },
+  "jwt": {
+    "token": ""
+  },
+  "settings": {
+    "defaultApp": "eahw",
+    "thirdParty": {}
+  }
+}

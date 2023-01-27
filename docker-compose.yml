@@ -1,0 +1,30 @@
+version: '3.0'
+
+services:
+  ahw_auth_redis:
+    image: redis:alpine
+    container_name: ahw_auth_redis
+  ahw_auth:
+    image: africahazardswatch.org/ahw-auth
+    container_name: eahw_auth
+    build: .
+    restart: ${RESTART_POLICY}
+    command: bash -c "/wait && yarn start"
+    environment:
+      - WAIT_HOSTS=ahw_auth_redis:6379
+      - REDIS_URL=redis://ahw_auth_redis:6379
+      - KC_REALM=${KC_REALM}
+      - KC_AUTH_URL=${KC_AUTH_URL}
+      - KC_CLIENT_ID=${KC_CLIENT_ID}
+      - KC_CLIENT_SECRET=${KC_CLIENT_SECRET}
+      - KC_USERS_GROUP=${KC_USERS_GROUP}
+      - KC_AUTH_USERNAME=${KC_AUTH_USERNAME}
+      - KC_AUTH_PASSWORD=${KC_AUTH_PASSWORD}
+      - KC_AUTH_CLIENT_ID=${KC_AUTH_CLIENT_ID}
+      - KC_REALM_PUBLIC_KEY=${KC_REALM_PUBLIC_KEY}
+      - LOGGER_LEVEL=${LOGGER_LEVEL}
+      - PORT=9000
+    ports:
+      - 9000
+    depends_on:
+      - ahw_auth_redis
