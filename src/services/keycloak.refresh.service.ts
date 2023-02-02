@@ -8,7 +8,7 @@ const keycloakConfig: KeycloakConfig = config.get("keycloak");
 export default class KeyCloakRefreshService {
   static async resfreshToken(refreshToken: string): Promise<any> {
     const keycloakIssuer = await Issuer.discover(
-      `${keycloakConfig.authServerUrl}/realms/${keycloakConfig.resource}`
+      `${keycloakConfig.authServerUrl}/realms/${keycloakConfig.realm}`
     );
 
     const client = new keycloakIssuer.Client({
