@@ -29,11 +29,6 @@
       "tslint --fix"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "nyc": {
     "extension": [
       ".ts",

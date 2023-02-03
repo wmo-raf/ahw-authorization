@@ -93,7 +93,7 @@ export function loadRoutes(app: Application): void {
         ctx.state.user.newAccessToken = token.access_token;
         ctx.state.user.newRefreshToken = token.refresh_token;
       } catch (error) {
-        logger.debug("Error Refreshing token");
+        logger.debug("Error Refreshing token", error);
       }
     }
 
